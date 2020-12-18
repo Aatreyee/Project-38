@@ -20,13 +20,13 @@ function preload(){
 
 function setup() {
   
-  createCanvas(400,400);
+  createCanvas(displayWidth,displayHeight);
   
-  monkey = createSprite(80,350,20,20);
+  monkey = createSprite(displayWidth/2-200,displayHeight-50,20,20);
   monkey.addAnimation("moving", monkey_running);
   monkey.scale=0.1;
   
-  ground = createSprite(400,350,900,10);
+  ground = createSprite(displayWidth/2-200,displayHeight-30,displayWidth*3,10);
   ground.velocityX=-4;
   ground.x=ground.width/2;
   console.log(ground);
@@ -72,25 +72,25 @@ function draw() {
 
 function banana(){
   if (frameCount % 80 === 0){
-    var banana = createSprite(400,56,78,56);
+    var banana = createSprite(displayWidth/2+200,displayHeight/2+900,78,56);
     banana.addImage(bananaImage);
     banana.scale=0.1;
-    banana.velocityX = -4;
-    banana.y = Math.round(random(120,250));
+    banana.velocityX = -3;
+    banana.y = Math.round(random(displayHeight/2+80,displayHeight/2+300));
     banana.depth = monkey.depth;
     monkey.depth = monkey.depth + 1;
     FoodGroup.add(banana);
-    banana.lifetime = 100;
+    banana.lifetime = 1000;
   }
 }
 
 function obstacle(){
-  if (frameCount % 100 === 0){
-    var obstacle = createSprite(400,310,78,56);
+  if (frameCount % 180 === 0){
+    var obstacle = createSprite(displayWidth/2+800,displayHeight-70,78,56);
     obstacle.addImage( obstacleImage);
     obstacle.scale=0.2;
     obstacle.velocityX=-2;  
     obstaclesGroup.add(obstacle);
-    obstacle.lifetime = 200;
+    obstacle.lifetime = 1000;
   }
 }
